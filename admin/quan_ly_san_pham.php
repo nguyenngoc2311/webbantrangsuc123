@@ -1,137 +1,151 @@
 <?php
 include('../php/config.php');
 
-// --- 1. TÌM KIẾM + LỌC + PHÂN TRANG ---
+// --- PHÂN TRANG ---
 $limit = 15; 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
+// --- SEARCH + FILTER ---
 $search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
-$filter_dm = isset($_GET['danh_muc_id']) ? mysqli_real_escape_string($conn, $_GET['danh_muc_id']) : '';
+$filter_dm = isset($_GET['danh_muc_id']) ? (int)$_GET['danh_muc_id'] : 0;
 
-$where_clauses = [];
-
+$where = [];
 if ($search != '') {
-    $where_clauses[] = "(sp.ten_sp LIKE '%$search%' OR sp.ma_sp LIKE '%$search%')";
+    $where[] = "(sp.ten_sp LIKE '%$search%' OR sp.ma_sp LIKE '%$search%')";
 }
-if ($filter_dm != '') {
-    $where_clauses[] = "sp.danh_muc_id = '$filter_dm'";
+if ($filter_dm > 0) {
+    $where[] = "sp.danh_muc_id = $filter_dm";
 }
-
-$where_clause = count($where_clauses) > 0 ? " WHERE " . implode(" AND ", $where_clauses) : "";
+$where_sql = count($where) ? "WHERE " . implode(" AND ", $where) : "";
 
 // --- COUNT ---
-$sql_count = "SELECT COUNT(*) FROM sanpham sp $where_clause";
-$result_count = mysqli_query($conn, $sql_count);
-$total_rows = mysqli_fetch_row($result_count)[0];
+$total_rows = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM sanpham sp $where_sql"))[0];
 $total_pages = ceil($total_rows / $limit);
 
 // --- DATA ---
 $sql = "SELECT sp.*, 
-        (SELECT GROUP_CONCAT(CONCAT(kich_co, ' (', so_luong, ')') SEPARATOR ', ') 
-         FROM bien_the_san_pham WHERE san_pham_id = sp.id) as danh_sach_size
-        FROM sanpham sp 
-        $where_clause 
-        ORDER BY sp.id DESC 
+        (SELECT GROUP_CONCAT(CONCAT(kich_co,' (',so_luong,')') SEPARATOR ', ')
+         FROM bien_the_san_pham WHERE san_pham_id = sp.id) AS danh_sach_size
+        FROM sanpham sp
+        $where_sql
+        ORDER BY sp.id DESC
         LIMIT $limit OFFSET $offset";
 
 $result = mysqli_query($conn, $sql);
 
-// ================== THÊM  ==================
-if (isset($_POST['add_product'])) {
-    $ten_sp = mysqli_real_escape_string($conn, $_POST['ten_sp']);
-    $ma_sp = mysqli_real_escape_string($conn, $_POST['ma_sp']);
-    $gia = $_POST['gia'];
-    $gia_khuyen_mai = (isset($_POST['gia_khuyen_mai']) && $_POST['gia_khuyen_mai'] !== '') ? $_POST['gia_khuyen_mai'] : NULL;
-    $chat_lieu = mysqli_real_escape_string($conn, $_POST['chat_lieu']);
-    $da_chinh = mysqli_real_escape_string($conn, $_POST['da_chinh']);
-    $mo_ta = mysqli_real_escape_string($conn, $_POST['mo_ta']);
-    $danh_muc_id = $_POST['danh_muc_id'];
-    $thuong_hieu_id = $_POST['thuong_hieu_id'];
 
-    $hinh_anh = "";
-    if (isset($_FILES['hinh_anh']) && $_FILES['hinh_anh']['error'] == 0) {
-        $hinh_anh = basename($_FILES['hinh_anh']['name']);
-        move_uploaded_file($_FILES['hinh_anh']['tmp_name'], '../image/' . $hinh_anh);
-    }
 
-    $giaKM_sql = ($gia_khuyen_mai === NULL) ? "NULL" : "'$gia_khuyen_mai'";
-    $sql_insert = "INSERT INTO sanpham (ten_sp, ma_sp, gia, gia_khuyen_mai, chat_lieu, da_chinh, mo_ta, hinh_anh, danh_muc_id, thuong_hieu_id, trang_thai) 
-                   VALUES ('$ten_sp','$ma_sp','$gia',$giaKM_sql,'$chat_lieu','$da_chinh','$mo_ta','$hinh_anh','$danh_muc_id','$thuong_hieu_id',1)";
+// ================== SET STATUS ==================
+if (isset($_GET['set_status'])) {
+    $id = (int)$_GET['set_status'];
+    $value = (int)$_GET['value'];
 
-    if (mysqli_query($conn, $sql_insert)) {
-        $last_id = mysqli_insert_id($conn);
-        if (isset($_POST['kich_co_arr'])) {
-            $ks = $_POST['kich_co_arr'];
-            $sls = $_POST['so_luong_arr'];
-            for ($i = 0; $i < count($ks); $i++) {
-                if (!empty($ks[$i])) {
-                    $k = mysqli_real_escape_string($conn, $ks[$i]);
-                    $sl = (int)$sls[$i];
-                    mysqli_query($conn, "INSERT INTO bien_the_san_pham (san_pham_id, kich_co, so_luong) VALUES ($last_id,'$k',$sl)");
-                }
-            }
-        }
-        echo "<script>alert('Thêm thành công!'); location.href='quan_ly_san_pham.php';</script>";
-        exit;
-    }
-}
-// ==================   UPDATE  ==================
-if (isset($_POST['edit_product_submit'])) {
-    $id = (int)$_POST['id'];
-    $ten_sp = mysqli_real_escape_string($conn, $_POST['ten_sp']);
-    $ma_sp = mysqli_real_escape_string($conn, $_POST['ma_sp']);
-    $gia = $_POST['gia'];
-    $gia_khuyen_mai = (isset($_POST['gia_khuyen_mai']) && $_POST['gia_khuyen_mai'] !== '') ? $_POST['gia_khuyen_mai'] : NULL;
-    $chat_lieu = mysqli_real_escape_string($conn, $_POST['chat_lieu']);
-    $da_chinh = mysqli_real_escape_string($conn, $_POST['da_chinh']);
-    $mo_ta = mysqli_real_escape_string($conn, $_POST['mo_ta']);
-    $danh_muc_id = $_POST['danh_muc_id'];
-    $thuong_hieu_id = $_POST['thuong_hieu_id'];
-    $hinh_anh = $_POST['hinh_anh_old'];
-
-    if (isset($_FILES['hinh_anh']) && $_FILES['hinh_anh']['error'] == 0) {
-        $hinh_anh = basename($_FILES['hinh_anh']['name']);
-        move_uploaded_file($_FILES['hinh_anh']['tmp_name'], '../image/' . $hinh_anh);
-    }
-
-    $giaKM_sql = ($gia_khuyen_mai === NULL) ? "NULL" : "'$gia_khuyen_mai'";
-    $sql_update = "UPDATE sanpham SET ten_sp='$ten_sp', ma_sp='$ma_sp', gia='$gia', gia_khuyen_mai=$giaKM_sql, chat_lieu='$chat_lieu', da_chinh='$da_chinh', mo_ta='$mo_ta', hinh_anh='$hinh_anh', danh_muc_id='$danh_muc_id', thuong_hieu_id='$thuong_hieu_id' WHERE id=$id";
-
-    if (mysqli_query($conn, $sql_update)) {
-        mysqli_query($conn, "DELETE FROM bien_the_san_pham WHERE san_pham_id=$id");
-        if (isset($_POST['kich_co_arr'])) {
-            $ks = $_POST['kich_co_arr'];
-            $sls = $_POST['so_luong_arr'];
-            for ($i = 0; $i < count($ks); $i++) {
-                if (!empty($ks[$i])) {
-                    $k = mysqli_real_escape_string($conn, $ks[$i]);
-                    $sl = (int)$sls[$i];
-                    mysqli_query($conn, "INSERT INTO bien_the_san_pham (san_pham_id, kich_co, so_luong) VALUES ($id,'$k',$sl)");
-                }
-            }
-        }
-        echo "<script> alert('Cập nhật thành công!'); window.location.href = 'quan_ly_san_pham.php';  </script>";
-        exit;
-    }
-}
-// ================== DELETE  ==================
-if (isset($_GET['delete_id'])) {
-    $id = (int)$_GET['delete_id'];
-    mysqli_query($conn, "DELETE FROM sanpham WHERE id=$id");
-    mysqli_query($conn, "DELETE FROM bien_the_san_pham WHERE san_pham_id=$id");
+    mysqli_query($conn, "UPDATE sanpham SET trang_thai = $value WHERE id = $id");
     header("Location: quan_ly_san_pham.php");
     exit;
 }
-// ================== TOGGLE TRẠNG THÁI ==================
-if (isset($_GET['toggle_status'])) {
-    $id = (int)$_GET['toggle_status'];
 
-    mysqli_query($conn, "
-        UPDATE sanpham 
-        SET trang_thai = IF(trang_thai = 1, 0, 1) 
-        WHERE id = $id
-    ");
+
+// ================== DELETE ==================
+if (isset($_GET['delete_id'])) {
+    $id = (int)$_GET['delete_id'];
+
+    mysqli_query($conn, "DELETE FROM sanpham WHERE id=$id");
+    mysqli_query($conn, "DELETE FROM bien_the_san_pham WHERE san_pham_id=$id");
+
+    header("Location: quan_ly_san_pham.php");
+    exit;
+}
+
+
+// ================== ADD ==================
+if (isset($_POST['add_product'])) {
+    $ten_sp = mysqli_real_escape_string($conn, $_POST['ten_sp']);
+    $ma_sp = mysqli_real_escape_string($conn, $_POST['ma_sp']);
+    $gia = (int)$_POST['gia'];
+    $gia_km = ($_POST['gia_khuyen_mai'] !== '') ? (int)$_POST['gia_khuyen_mai'] : NULL;
+    $chat_lieu = mysqli_real_escape_string($conn, $_POST['chat_lieu']);
+    $da_chinh = mysqli_real_escape_string($conn, $_POST['da_chinh']);
+    $mo_ta = mysqli_real_escape_string($conn, $_POST['mo_ta']);
+    $danh_muc_id = (int)$_POST['danh_muc_id'];
+    $thuong_hieu_id = (int)$_POST['thuong_hieu_id'];
+
+    // upload ảnh
+    $hinh_anh = "";
+        if ($_FILES['hinh_anh']['error'] == 0) {
+            $hinh_anh = basename($_FILES['hinh_anh']['name']); // lấy tên gốc
+            move_uploaded_file($_FILES['hinh_anh']['tmp_name'], '../image/' . $hinh_anh);
+        }
+    $gia_km_sql = $gia_km === NULL ? "NULL" : $gia_km;
+
+    mysqli_query($conn, "INSERT INTO sanpham 
+        (ten_sp, ma_sp, gia, gia_khuyen_mai, chat_lieu, da_chinh, mo_ta, hinh_anh, danh_muc_id, thuong_hieu_id, trang_thai)
+        VALUES ('$ten_sp','$ma_sp',$gia,$gia_km_sql,'$chat_lieu','$da_chinh','$mo_ta','$hinh_anh',$danh_muc_id,$thuong_hieu_id,1)");
+
+    $last_id = mysqli_insert_id($conn);
+
+    if (isset($_POST['kich_co_arr'])) {
+        foreach ($_POST['kich_co_arr'] as $i => $k) {
+            if ($k != '') {
+                $k = mysqli_real_escape_string($conn, $k);
+                $sl = (int)$_POST['so_luong_arr'][$i];
+                mysqli_query($conn, "INSERT INTO bien_the_san_pham VALUES (NULL,$last_id,'$k',$sl)");
+            }
+        }
+    }
+
+    header("Location: quan_ly_san_pham.php");
+    exit;
+}
+
+
+// ================== UPDATE ==================
+if (isset($_POST['edit_product_submit'])) {
+    $id = (int)$_POST['id'];
+
+    $ten_sp = mysqli_real_escape_string($conn, $_POST['ten_sp']);
+    $ma_sp = mysqli_real_escape_string($conn, $_POST['ma_sp']);
+    $gia = (int)$_POST['gia'];
+    $gia_km = ($_POST['gia_khuyen_mai'] !== '') ? (int)$_POST['gia_khuyen_mai'] : NULL;
+    $chat_lieu = mysqli_real_escape_string($conn, $_POST['chat_lieu']);
+    $da_chinh = mysqli_real_escape_string($conn, $_POST['da_chinh']);
+    $mo_ta = mysqli_real_escape_string($conn, $_POST['mo_ta']);
+    $danh_muc_id = (int)$_POST['danh_muc_id'];
+    $thuong_hieu_id = (int)$_POST['thuong_hieu_id'];
+    $hinh_anh = $_POST['hinh_anh_old'];
+
+    if ($_FILES['hinh_anh']['error'] == 0) {
+    $hinh_anh = basename($_FILES['hinh_anh']['name']);
+    move_uploaded_file($_FILES['hinh_anh']['tmp_name'], '../image/' . $hinh_anh);
+  }
+
+    $gia_km_sql = $gia_km === NULL ? "NULL" : $gia_km;
+
+    mysqli_query($conn, "UPDATE sanpham SET 
+        ten_sp='$ten_sp',
+        ma_sp='$ma_sp',
+        gia=$gia,
+        gia_khuyen_mai=$gia_km_sql,
+        chat_lieu='$chat_lieu',
+        da_chinh='$da_chinh',
+        mo_ta='$mo_ta',
+        hinh_anh='$hinh_anh',
+        danh_muc_id=$danh_muc_id,
+        thuong_hieu_id=$thuong_hieu_id
+        WHERE id=$id");
+
+    mysqli_query($conn, "DELETE FROM bien_the_san_pham WHERE san_pham_id=$id");
+
+    if (isset($_POST['kich_co_arr'])) {
+        foreach ($_POST['kich_co_arr'] as $i => $k) {
+            if ($k != '') {
+                $k = mysqli_real_escape_string($conn, $k);
+                $sl = (int)$_POST['so_luong_arr'][$i];
+                mysqli_query($conn, "INSERT INTO bien_the_san_pham VALUES (NULL,$id,'$k',$sl)");
+            }
+        }
+    }
 
     header("Location: quan_ly_san_pham.php");
     exit;
@@ -235,11 +249,14 @@ if (isset($_GET['toggle_status'])) {
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <select onchange="window.location.href='?set_status=<?= $row['id'] ?>&value='+this.value" 
+                                              <select 
+                                                    onchange="window.location.href='?page=<?= $page ?>&search=<?= urlencode($search) ?>&danh_muc_id=<?= $filter_dm ?>&set_status=<?= $row['id'] ?>&value='+this.value" 
                                                     class="form-select form-select-sm">
-                                                <option value="1" <?= $row['trang_thai']==1?'selected':'' ?>>Hoạt động</option>
-                                                <option value="0" <?= $row['trang_thai']==0?'selected':'' ?>>Tạm tắt</option>
-                                            </select>
+
+                                                    <option value="1" <?= $row['trang_thai'] == 1 ? 'selected' : '' ?>>Hoạt động</option>
+                                                    <option value="0" <?= $row['trang_thai'] == 0 ? 'selected' : '' ?>>Tạm tắt</option>
+
+                                                </select>
                                             <button class="btn btn-sm btn-outline-warning me-2" data-bs-toggle="modal" data-bs-target="#editModal<?= $row['id'] ?>">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
