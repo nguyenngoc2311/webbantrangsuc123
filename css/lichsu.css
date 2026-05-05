@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+.card-order { 
+    border-radius: 10px; 
+    border: none; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06); 
+    margin-bottom: 20px; 
+    background: #fff; 
+}
+
+.product-img { 
+    width: 70px; 
+    height: 70px; 
+    object-fit: cover; 
+    border-radius: 6px; 
+}
+
+.status-text { 
+    color: #ee4d2d; 
+    font-size: 0.85rem; 
+    font-weight: 700; 
+}
+
+.nav-filter { 
+    background: #fff; 
+    border-radius: 8px;
+    border: 1px solid #eee;
+    margin-top: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.nav-filter a { 
+    text-decoration: none; 
+    padding: 14px 0; 
+    color: #666; 
+    flex: 1; 
+    text-align: center; 
+    font-size: 0.95rem; 
+    transition: 0.2s;
+}
+
+.nav-filter a:hover {
+    color: #ee4d2d;
+}
+
+.nav-filter .active { 
+    color: #ee4d2d; 
+    border-bottom: 3px solid #ee4d2d; 
+    font-weight: bold; 
+}
+
+.badge-vnpay { 
+    background-color: #e8f5e9; 
+    color: #2e7d32; 
+    padding: 5px 10px; 
+    border-radius: 4px; 
+    font-size: 0.8rem; 
+}

@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* ===== BANNER BACKGROUND ===== */
+.login-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1515562141207-7a88fb7ce338");
+
+    background-size: cover;
+    background-position: center;
+}
+
+/* ===== LOGIN FORM ===== */
+.login-container {
+    width: 360px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+.login-container h2 {
+    color: gold;
+    margin-bottom: 25px;
+}
+
+/* INPUT */
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+
+    border-radius: 8px;
+    border: 1px solid #333;
+
+    background: #222;
+    color: white;
+}
+
+.login-container input:focus {
+    border: 1px solid gold;
+    outline: none;
+}
+
+/* BUTTON */
+.login-container button {
+    width: 100%;
+    padding: 12px;
+
+    background: gold;
+    border: none;
+    border-radius: 8px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background: #e6c200;
+}
+
+/* BACK HOME */
+.back-home {
+    display: block;
+    margin-top: 15px;
+    color: gold;
+    text-decoration: none;
+}
+
+.back-home:hover {
+    text-decoration: underline;
+}
+
+/* ===== LINK ĐĂNG KÝ ===== */
+.login-container p {
+    margin-top: 18px;
+    font-size: 14px;
+    color: #ccc;
+    text-align: center;
+}
+
+.login-container p a {
+    color: gold;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: 0.3s;
+}
+
+.login-container p a:hover {
+    text-decoration: underline;
+    color: #ffd700;
+}

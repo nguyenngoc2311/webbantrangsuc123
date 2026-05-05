@@ -1,0 +1,150 @@
+/* ===== RESET HỆ THỐNG ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* ===== LAYOUT CHÍNH ===== */
+.main-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* SIDEBAR: Cố định độ rộng */
+.sidebar {
+    width: 260px;
+    background: #1c1c1c; 
+    color: #fff;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+/* CONTENT: Quan trọng nhất để bự ra */
+.content {
+    margin-left: 260px; 
+    flex: 1; 
+    width: calc(100% - 260px); 
+    padding: 30px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== TIÊU ĐỀ ===== */
+.content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===== CARD WRAPPER ===== */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); 
+    overflow: hidden;
+    width: 100%; 
+    border: 1px solid #e0e0e0;
+}
+
+.card-header {
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== BẢNG (TABLE) ===== */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; 
+}
+
+.table {
+    width: 100% !important; 
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: #f8f9fa;
+    color: #555;
+    font-weight: 700;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+/* Hiệu ứng dòng khi di chuột qua */
+.table-hover tbody tr:hover {
+    background-color: #f1f7ff !important;
+    transition: 0.2s ease-in-out;
+}
+
+/* Trạng thái trống (Empty State) */
+.table td[colspan] {
+    text-align: center;
+    padding: 80px 0;
+    color: #999;
+    font-size: 16px;
+    background: #fafafa;
+}
+
+/* ===== NÚT BẤM (BUTTONS) ===== */
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary { background: #007bff; color: #fff; }
+.btn-primary:hover { background: #0056b3; }
+
+.badge-info {
+    background: #17a2b8;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 0;
+        display: none; 
+    }
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,112 @@
+/* Layout Cấu Trúc Chính */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* Sidebar đã có ở bước trước, đảm bảo width là 280px */
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Căn chỉnh nội dung bên phải */
+.main-content {
+    margin-left: 280px; /* Bằng đúng chiều rộng sidebar */
+    width: calc(100% - 280px);
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+/* Làm đẹp Card và Bảng */
+.card {
+    border-radius: 12px;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.table {
+    background: white;
+    border-radius: 12px;
+}
+
+.table thead th {
+    background-color: #1a1a1a;
+    color: #d4af37; /* Màu vàng đồng từ Sidebar */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 15px;
+    border: none;
+}
+
+.table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+}
+
+/* Nút bấm chuyên nghiệp */
+.btn-primary {
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #d4af37;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #d4af37;
+    border-color: #d4af37;
+    color: #1a1a1a;
+}
+
+.btn-outline-warning {
+    color: #d4af37;
+    border-color: #d4af37;
+}
+
+.btn-outline-warning:hover {
+    background-color: #d4af37;
+    color: #1a1a1a;
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+    border: none;
+}
+
+.modal-header.bg-primary {
+    background-color: #1a1a1a !important;
+}
+
+.modal-header .modal-title {
+    color: #d4af37;
+    letter-spacing: 1px;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%); /* Ẩn sidebar trên mobile */
+    }
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+}

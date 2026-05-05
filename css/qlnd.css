@@ -1,0 +1,115 @@
+:root {
+    --sidebar-width: 260px;
+    --primary-color: #4e73df;
+    --dark-bg: #2c3e50;
+    --light-bg: #f8f9fc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+/* Cấu trúc Layout chính */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* Sidebar bên trái */
+#sidebar {
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+    background: var(--dark-bg);
+    color: #fff;
+    transition: all 0.3s;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Nội dung bên phải */
+#content {
+    width: 100%;
+    padding: 25px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* Tinh chỉnh Bảng */
+.table-responsive { 
+    border-radius: 12px; 
+    background: white;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    border: 1px solid #e3e6f0;
+}
+
+.table thead {
+    background-color: #f8f9fc;
+}
+
+.table thead th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    color: #4e73df;
+    padding: 15px;
+}
+
+/* Thành phần nhỏ */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #eaecf4;
+}
+
+.hash-text { 
+    font-family: 'Courier New', monospace; 
+    color: #b7b9cc; 
+    font-size: 0.8rem; 
+}
+
+.btn-action {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+/* Modal Styling */
+.modal-content {
+    border: none;
+    border-radius: 15px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e3e6f0;
+    background-color: #f8f9fc;
+    border-radius: 15px 15px 0 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .wrapper { 
+        flex-direction: column; 
+    }
+    #sidebar { 
+        min-width: 100%; 
+        min-height: auto; 
+        position: relative; 
+    }
+    #content {
+        padding: 15px;
+    }
+}

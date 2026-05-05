@@ -1,0 +1,127 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  z-index: 1000;
+  background: #ffffff !important;
+  padding: 8px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Center elements */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-bottom: 2px solid #d4af37; /* Bottom border for the menu */
+}
+
+/* ================= LOGO ================= */
+.navbar-brand {
+  font-size: 24px;
+  font-weight: 700;
+  color: #d4af37 !important;
+  white-space: nowrap;
+}
+
+/* ================= MENU ================= */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Reduced space between menu items */
+}
+
+.navbar-nav .nav-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: #333 !important;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #d4af37 !important;
+}
+
+/* ================= SEARCH ================= */
+form {
+  width: 220px; /* Reduced width of search bar */
+  margin-right: 20px;
+}
+
+form input {
+  height: 36px;
+  font-size: 14px;
+  width: 100%; /* Ensures the search bar fills the form */
+}
+
+form button {
+  height: 36px;
+}
+
+/* ================= USER + CART ================= */
+.navbar-nav .nav-link i {
+  margin-right: 6px;
+  font-size: 16px;
+}
+
+/* ================= CONTENT FIX ================= */
+.container,
+.container-fluid {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.banner {
+  margin-top: 65px; 
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .navbar-nav {
+    gap: 12px;
+  }
+
+  form {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* ================= USER AVATAR AND DROPDOWN MENU ================= */
+.nav-avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border: 1px solid #dee2e6;
+}
+
+.dropdown-menu {
+    border-radius: 8px;
+}

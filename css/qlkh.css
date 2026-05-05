@@ -1,0 +1,85 @@
+:root {
+    --sidebar-width: 260px; /* Độ rộng của Sidebar */
+    --primary-gold: #d4af37;
+    --dark-bg: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* SIDEBAR (HEADER) CỐ ĐỊNH BÊN TRÁI */
+/* Lưu ý: Đảm bảo class này trùng với thẻ bao ngoài trong file header.php */
+.sidebar {
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: var(--dark-bg);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* PHẦN NỘI DUNG CHÍNH BÊN PHẢI */
+.main-content {
+    margin-left: var(--sidebar-width); /* Đẩy nội dung sang phải */
+    width: calc(100% - var(--sidebar-width));
+    min-height: 100vh;
+    padding: 30px;
+}
+
+/* LÀM ĐẸP BẢNG VÀ CARD */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.table thead.table-dark {
+    background-color: #212529;
+}
+
+.table thead th {
+    border: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 15px;
+}
+
+.table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(212, 175, 55, 0.05); /* Màu vàng Luxury mờ khi hover */
+}
+
+/* NÚT THAO TÁC */
+.btn-outline-primary {
+    border-color: #dee2e6;
+    color: #555;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-gold);
+    border-color: var(--primary-gold);
+    color: white;
+}
+
+/* ĐỊNH DẠNG BADGE ID */
+.badge.bg-secondary {
+    background-color: #f1f1f1 !important;
+    color: #666;
+    border: 1px solid #ddd;
+}

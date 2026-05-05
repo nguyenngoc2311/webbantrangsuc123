@@ -1,0 +1,158 @@
+:root {
+    --sidebar-width: 260px;
+    --primary-color: #4e73df;
+    --success-color: #1cc88a;
+    --warning-color: #f6c23e;
+    --danger-color: #e74a3b;
+    --bg-light: #f8f9fc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+/* Layout */
+.main-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%; /* Ensure the wrapper takes full width */
+    max-width: 100%; /* Avoid overflow on large screens */
+}
+
+.sidebar-wrapper {
+    width: var(--sidebar-width);
+    background: #fff;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.content-area {
+    margin-left: var(--sidebar-width); /* Push content to the right */
+    width: calc(100% - var(--sidebar-width));
+    transition: all 0.3s;
+}
+
+/* Card & Table Styling */
+.main-card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.icon-box {
+    background: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.table thead th {
+    background-color: #f8f9fc;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: #4e73df;
+    padding: 15px 10px;
+}
+
+.product-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #fff;
+}
+
+/* Custom Badges */
+.custom-badge {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+}
+
+.badge-success { background: #086434; color: #155724; }
+.badge-warning { background: #bcc95c; color: #856404; }
+.badge-danger { background: #bcc95c; color: #721c24; }
+
+/* Stock Number */
+.stock-number {
+    font-weight: 700;
+    background: #eee;
+    padding: 2px 10px;
+    border-radius: 6px;
+    color: #333;
+}
+
+/* Action Button */
+.btn-import {
+    background: #fff;
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+    border-radius: 8px;
+    padding: 6px 15px;
+    transition: all 0.2s;
+}
+
+.btn-import:hover {
+    background: var(--success-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(28, 200, 138, 0.2);
+}
+
+/* Row states */
+.stock-out { background-color: rgba(231, 74, 59, 0.05) !important; }
+.stock-warning { background-color: rgba(246, 194, 62, 0.05) !important; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .sidebar-wrapper { width: 80px; }
+    .content-area { margin-left: 80px; width: calc(100% - 80px); }
+    .sidebar-wrapper span { display: none; } /* Hide text menu if exists */
+}
+
+/* For 90% screen width adjustment */
+@media (max-width: 1024px) {
+    .main-wrapper {
+        width: 90%; /* Adjust wrapper to 90% of the viewport width */
+        margin: 0 auto; /* Center the layout */
+    }
+}
+
+.badge-size-custom {
+    background-color: #17a2b8 !important;
+    color: #fff !important;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.badge-danger-custom { background-color: #dc3545 !important; }
+
+.main-wrapper { padding-top: 20px; }
+
+.product-name { font-size: 15px; color: #333; line-height: 1.2; }
+.product-code { font-size: 12px; color: #999; }
+
+.price-text { color: #0d6efd; font-weight: bold; font-size: 15px; }
+
+.toolbar-container { display: flex; gap: 8px; align-items: center; justify-content: flex-end; }
+
+.form-select-sm { width: auto; min-width: 160px; height: 31px; }

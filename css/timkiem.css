@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+/* Khung chứa ảnh sản phẩm */
+.product-img-container {
+    height: 230px;
+    text-align: center; 
+    padding: 15px;
+}
+
+/* Ảnh sản phẩm */
+.product-img-container img {
+    height: 200px; 
+    width: auto;   
+}
+
+/* Màu sao */
+.star-gold { 
+    color: orange; 
+}
+.star-gray { 
+    color: silver; 
+}
+
+/* Thẻ sản phẩm */
+.product-card { 
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+/* Hiệu ứng khi di chuột qua (chỉ đổi màu nền cho đơn giản) */
+.product-card:hover { 
+    background-color: #f0f0f0;
+}
+
+/* Tiêu đề sản phẩm */
+.product-title {
+    font-size: 15px;
+    font-weight: bold;
+    height: 40px;    
+    overflow: hidden; 
+    padding: 0 5px;
+}

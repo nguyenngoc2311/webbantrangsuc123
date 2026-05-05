@@ -1,0 +1,95 @@
+/* Custom styles for Order Detail page using Bootstrap 5 base */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+.order-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    background: #ffffff;
+    padding: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.order-header-title {
+    color: #0d6efd;
+    font-weight: 700;
+    border-left: 5px solid #0d6efd;
+    padding-left: 15px;
+}
+
+.img-product {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    transition: transform 0.2s;
+}
+
+.img-product:hover {
+    transform: scale(1.1);
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    color: #495057;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border: none;
+    padding: 15px;
+}
+
+.table tbody tr {
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    transition: all 0.3s;
+}
+
+.table tbody tr:hover {
+    background-color: #fcfcfc;
+    transform: translateY(-2px);
+}
+
+.table tbody td {
+    padding: 15px;
+    border-top: 1px solid #f1f1f1 !important;
+}
+
+.badge-status {
+    font-weight: 500;
+    padding: 0.5em 1em;
+}
+
+.price-text {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+.back-link {
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: #0a58ca;
+    text-decoration: underline;
+}

@@ -1,0 +1,70 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 270px; /* Đảm bảo khoảng cách với sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s ease; /* Điều chỉnh khi sidebar thay đổi kích thước */
+}
+
+/* Điều chỉnh các thẻ card cho đẹp hơn */
+.card {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Đảm bảo các cột card luôn đồng đều */
+.row > .col-md-4 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Đảm bảo phần nội dung không bị lệch */
+.container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+}

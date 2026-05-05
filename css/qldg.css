@@ -1,0 +1,128 @@
+/* TỔNG THỂ LUXURY STYLE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+.main-content {
+    padding: 30px;
+    background-color: #f4f7f6;
+}
+
+/* CARD VÀ TIÊU ĐỀ */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05) !important;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #fff !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    padding: 20px 25px !important;
+}
+
+.card-header h5 {
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 0.5px;
+}
+
+/* PHONG CÁCH BẢNG */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    color: #8898aa;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 15px 20px;
+    border-top: none;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table tbody td {
+    padding: 18px 20px;
+    color: #525f7f;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+/* Hiệu ứng khi rê chuột vào hàng */
+.table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #fcfcfc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+/* Trạng thái chưa đọc */
+.unread {
+    background-color: #fff9f0 !important; /* Cam nhạt cực nhẹ */
+    border-left: 4px solid #ffc107; 
+}
+
+/* AVATAR & ẢNH */
+.img-review {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.img-review:hover {
+    transform: scale(1.1);
+}
+
+/* SAO ĐÁNH GIÁ */
+.star-gold {
+    color: #fb6340; 
+    text-shadow: 0 0 2px rgba(251, 99, 64, 0.2);
+}
+
+/* BADGE TRẠNG THÁI */
+.badge {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-weight: 500;
+}
+
+.bg-warning-subtle {
+    background-color: #fff4e5 !important;
+    color: #ff8800 !important;
+}
+
+/* NÚT HÀNH ĐỘNG */
+.btn-sm {
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin-left: 3px;
+}
+
+.btn-outline-danger:hover {
+    background-color: #f5365c;
+    border-color: #f5365c;
+}
+
+.btn-primary {
+    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
+    border: none;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+}

@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* Bản đồ */
+#mapid {
+    height: 550px;
+    width: 100%;
+    border-bottom: 3px solid #d4af37;
+}
+
+/* Header thông tin */
+.slogan {
+    font-style: italic;
+    color: #d4af37;
+    margin-bottom: 5px;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 5px;
+}
+
+.contact-info-row a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Danh sách cửa hàng dạng cột thẳng */
+.store-list-full {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid #f0f0f0;
+}
+
+.gold-text {
+    color: #d4af37;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.store-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.05rem;
+    transition: all 0.2s;
+}
+
+.store-item:hover {
+    padding-left: 10px;
+    color: #d4af37;
+}
+
+.store-item span {
+    font-weight: bold;
+    color: #d4af37;
+    margin-right: 15px;
+}
+
+.store-item b {
+    color: #222;
+}
+
+.store-item:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .main-title { font-size: 1.8rem; }
+    #mapid { height: 350px; }
+    .store-item { font-size: 0.95rem; }
+}

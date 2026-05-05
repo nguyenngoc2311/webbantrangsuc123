@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* Wrapper */
+.doitra-wrapper {
+    background: #f8f9fa;
+    padding: 40px 0;
+}
+
+/* Container */
+.doitra-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+/* Tiêu đề chính */
+.main-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Đoạn giới thiệu */
+.intro-text {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Nội dung */
+.policy-section {
+    font-size: 15px;
+    color: #333;
+}
+
+/* Mỗi mục */
+.section-item {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Tiêu đề từng mục */
+.section-item h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+/* Danh sách */
+.section-item ul,
+.section-item ol {
+    padding-left: 20px;
+}
+
+.section-item li {
+    margin-bottom: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .doitra-container {
+        padding: 20px;
+    }
+
+    .main-title {
+        font-size: 20px;
+    }
+}

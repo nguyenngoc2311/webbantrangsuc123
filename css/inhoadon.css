@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-main);
+}
+
+/* BILL POS */
+.bill-box{
+    width:100%;
+    max-width:420px;
+    margin:auto;
+    border:1px solid #000;
+    padding:10px;
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    border-bottom:1px dashed #000;
+    padding-bottom:8px;
+    margin-bottom:8px;
+}
+
+.header h5{
+    margin:0;
+    font-weight:bold;
+}
+
+/* INFO */
+.info{
+    font-size:12px;
+    margin-bottom:8px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12px;
+}
+
+th,td{
+    border:1px solid #000;
+    padding:4px;
+    text-align:center;
+}
+
+/* TOTAL */
+.total{
+    text-align:right;
+    font-weight:bold;
+}
+
+/* FOOTER */
+.footer{
+    border-top:1px dashed #000;
+    margin-top:10px;
+    padding-top:8px;
+    text-align:center;
+}
+
+/* BACK LINK */
+.back-link{
+    color:#000;
+    text-decoration:underline;
+    margin-left:10px;
+}
+
+/* PRINT */
+@media print{
+    .no-print{display:none;}
+    .bill-box{
+        border:none;
+        width:100%;
+    }
+}
