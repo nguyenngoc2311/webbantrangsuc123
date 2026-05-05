@@ -46,10 +46,71 @@ echo "\xEF\xBB\xBF";
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style>
-    table { border-collapse: collapse; }
-    th, td { border: 1px solid #000; padding: 5px; }
-    th { background: #ddd; }
-    h2, h3 { color: #333; }
+body {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* Tiêu đề */
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+h3 {
+    margin-top: 25px;
+    color: #34495e;
+}
+
+/* Table chung */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Header */
+th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 8px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+/* Cell */
+td {
+    border: 1px solid #000;
+    padding: 6px;
+}
+
+/* Zebra row */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Căn chỉnh */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Tiền */
+.money {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+/* Tổng */
+.total-row td {
+    background-color: #dff0d8;
+    font-weight: bold;
+}
+
+/* Ngày xuất */
+p {
+    text-align: right;
+    font-style: italic;
+}
 </style>
 </head>
 
