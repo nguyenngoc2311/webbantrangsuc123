@@ -2,9 +2,6 @@
 <?php 
 include('../php/config.php');
 
-// charset
-$conn->set_charset("utf8mb4");
-
 // ======================
 // 1. TỔNG SẢN PHẨM
 // ======================
