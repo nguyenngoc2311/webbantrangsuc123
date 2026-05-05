@@ -236,9 +236,10 @@ if (isset($_GET['toggle_status'])) {
                                     <td>
                                         <div class="d-flex justify-content-center">
                                              <a href="?toggle_status=<?= $row['id'] ?>" 
-                                                class="btn btn-sm <?= $row['trang_thai'] ? 'btn-outline-secondary' : 'btn-outline-success' ?> me-2"
-                                                onclick="return confirm('Đổi trạng thái sản phẩm?')">
-                                                    <i class="bi <?= $row['trang_thai'] ? 'bi-eye-slash' : 'bi-eye' ?>"></i>
+                                               class="btn btn-sm <?= $row['trang_thai'] ? 'btn-success' : 'btn-secondary' ?> me-2"
+                                               onclick="return confirm('Đổi trạng thái sản phẩm?')">
+                                            
+                                               <i class="bi <?= $row['trang_thai'] ? 'bi-eye' : 'bi-eye-slash' ?>"></i>
                                             </a>
                                             <button class="btn btn-sm btn-outline-warning me-2" data-bs-toggle="modal" data-bs-target="#editModal<?= $row['id'] ?>">
                                                 <i class="bi bi-pencil-square"></i>
