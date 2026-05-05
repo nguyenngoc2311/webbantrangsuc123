@@ -235,12 +235,11 @@ if (isset($_GET['toggle_status'])) {
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                             <a href="?toggle_status=<?= $row['id'] ?>" 
-                                               class="btn btn-sm <?= $row['trang_thai'] ? 'btn-success' : 'btn-secondary' ?> me-2"
-                                               onclick="return confirm('Đổi trạng thái sản phẩm?')">
-                                            
-                                               <i class="bi <?= $row['trang_thai'] ? 'bi-eye' : 'bi-eye-slash' ?>"></i>
-                                            </a>
+                                            <select onchange="window.location.href='?set_status=<?= $row['id'] ?>&value='+this.value" 
+                                                    class="form-select form-select-sm">
+                                                <option value="1" <?= $row['trang_thai']==1?'selected':'' ?>>Hoạt động</option>
+                                                <option value="0" <?= $row['trang_thai']==0?'selected':'' ?>>Tạm tắt</option>
+                                            </select>
                                             <button class="btn btn-sm btn-outline-warning me-2" data-bs-toggle="modal" data-bs-target="#editModal<?= $row['id'] ?>">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
