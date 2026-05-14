@@ -16,6 +16,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-main);
 }
+html, body {
+    overflow-x: hidden;
+}
 /* Cấu trúc Layout chính */
 .wrapper {
     display: flex;
