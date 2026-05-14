@@ -15,7 +15,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-main);
 }
-
+html, body {
+    overflow-x: hidden;
+}
 /* SIDEBAR (HEADER) CỐ ĐỊNH BÊN TRÁI */
 /* Lưu ý: Đảm bảo class này trùng với thẻ bao ngoài trong file header.php */
 .sidebar {
