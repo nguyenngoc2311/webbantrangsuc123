@@ -10,7 +10,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-main);
 }
-
+html, body {
+    overflow-x: hidden;
+}
 .main-content {
     padding: 30px;
     background-color: #f4f7f6;
