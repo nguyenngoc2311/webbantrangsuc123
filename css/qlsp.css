@@ -10,6 +10,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-main);
 }
+html, body {
+    overflow-x: hidden;
+}
 /* ================= SIDEBAR (header.php) ================= */
 /* nếu header.php là sidebar */
 header {
