@@ -10,7 +10,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-main);
 }
-
+html, body {
+    overflow-x: hidden;
+}
 /* Sidebar đã có ở bước trước, đảm bảo width là 280px */
 .sidebar {
     width: 280px;
